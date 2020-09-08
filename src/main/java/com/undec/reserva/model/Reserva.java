@@ -1,6 +1,7 @@
 package com.undec.reserva.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -10,8 +11,7 @@ public class Reserva {
     private String apellido;
     private String dni;
     private String email;
-    private String fecha;
-    private String hora;
+    private Date fechaHora;
     private Restaurante restaurante;
 
     @Id
@@ -64,24 +64,14 @@ public class Reserva {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "fecha")
-    public String getFecha() {
-        return fecha;
+    @Column(name = "fecha_hora")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getFechaHora() {
+        return fechaHora;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    @Basic
-    @Column(name = "hora")
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setFechaHora(Date fecha) {
+        this.fechaHora = fecha;
     }
 
     @Override
@@ -94,13 +84,12 @@ public class Reserva {
                 Objects.equals(apellido, reserva.apellido) &&
                 Objects.equals(dni, reserva.dni) &&
                 Objects.equals(email, reserva.email) &&
-                Objects.equals(fecha, reserva.fecha) &&
-                Objects.equals(hora, reserva.hora);
+                Objects.equals(fechaHora, reserva.fechaHora);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, apellido, dni, email, fecha, hora);
+        return Objects.hash(id, nombre, apellido, dni, email, fechaHora);
     }
 
     @ManyToOne

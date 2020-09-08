@@ -29,8 +29,7 @@ CREATE TABLE `reserva` (
   `apellido` varchar(250) DEFAULT NULL,
   `dni` varchar(45) DEFAULT NULL,
   `email` varchar(250) DEFAULT NULL,
-  `fecha` varchar(45) DEFAULT NULL,
-  `hora` varchar(45) DEFAULT NULL,
+  `fecha_hora` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ix_restaurante_id` (`restaurante_id`),
   CONSTRAINT `fk_restaurante` FOREIGN KEY (`restaurante_id`) REFERENCES `restaurante` (`id`)
@@ -43,6 +42,7 @@ CREATE TABLE `reserva` (
 
 LOCK TABLES `reserva` WRITE;
 /*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
+INSERT INTO `reserva` VALUES (1,1,'Facu','Campazo','30271111','e.torrielli@gmail.com','2020-09-08 10:00:00'),(2,3,'Manu','Ginobili','30271222','e.torrielli@gmail.com','2020-09-08 11:00:00');
 /*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,4 +89,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-27 20:27:22
+-- Dump completed on 2020-09-08 17:45:17
