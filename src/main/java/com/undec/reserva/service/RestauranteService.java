@@ -20,8 +20,7 @@ public class RestauranteService {
     RestauranteRepository restauranteRepository;
 
     public Response findAll() throws Exception {
-        Response response = null;
-        response.setStatus(1);
+        Response response = new Response();
         List<Restaurante> restauranteList = restauranteRepository.findAll();
         List<RestauranteDTO> restauranteDTOList = new RestauranteDTO().getRestauranteDTOList(restauranteList);
         response.setData(restauranteDTOList);
