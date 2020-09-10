@@ -1,5 +1,9 @@
 package com.undec.reserva.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -16,6 +20,7 @@ public class Reserva {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -92,6 +97,8 @@ public class Reserva {
         return Objects.hash(id, nombre, apellido, dni, email, fechaHora);
     }
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     @JoinColumn(name = "restaurante_id", referencedColumnName = "id", nullable = false)
     public Restaurante getRestaurante() {

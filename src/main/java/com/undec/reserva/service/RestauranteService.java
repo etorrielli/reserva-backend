@@ -26,4 +26,12 @@ public class RestauranteService {
         response.setData(restauranteDTOList);
         return response;
     }
+
+    public Response findOneById(Integer id) throws Exception {
+        Response response = new Response();
+        Restaurante restaurante = restauranteRepository.findById(id).get();
+        RestauranteDTO restauranteDTO = new RestauranteDTO().getRestauranteDTO(restaurante);
+        response.setData(restauranteDTO);
+        return response;
+    }
 }
